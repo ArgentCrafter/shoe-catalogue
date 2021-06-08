@@ -1,14 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=, initial-scale=1.0" />
+    <link rel="stylesheet" href="./shoe-catalogue.css" />
     <title>Shoe Catalogue</title>
-</head>
-<body>
+  </head>
+  <body>
     <div class="containerAll">
-        
+      <div class="cartBtn">
+        <input type="image" class="cartBtnInput borders" src="./cart.png" />
+      </div>
+      <br />
+      <div class="header">
+        <p>Shoe Catalogue:</p>
+      </div>
+      <div class="shoe">
+        <img class="shoeImage" src="./shoe.png" />
+      </div>
+      <br />
+      <div class="content">
+        <div class="userInputs">
+          <label for="color">Shoe Color:</label>
+          <select class="shoesInput" name="color" id="color">
+            <option value="black">Black</option>
+            <option value="white">White</option>
+            <option value="red">Red</option>
+            <option value="orange">Orange</option>
+            <option value="blue">Blue</option></select
+          ><br />
+          <label for="size">Shoe Size:</label>
+          <select class="shoesInput" name="size" id="size">
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option></select
+          ><br />
+          <label for="brand">Shoe Brand:</label>
+          <select class="shoesInput" name="brand" id="brand">
+            <option value="mike">Mike</option>
+            <option value="hadidas">Hadidas</option>
+            <option value="jacksons">Jacksons</option>
+            <option value="oldbalance">Old Balance</option>
+            <option value="yeeboks">Yeeboks</option></select
+          ><br />
+        </div>
+        <div class="searchResult">
+          <p>
+            Please select a size, colour and <br />brand for your desired shoe
+            and <br />
+            press search to see if we have stock
+          </p>
+        </div>
+      </div>
+      <div class="search">
+        <button type="button" class="searchBtn borders" id="searchBtn">Search</button>
+      </div>
+      <div class="cartManip">
+        <button type="button" class="cartManipBtns borders" id="cartCancel">
+          Cancel Cart
+        </button>
+        <button type="button" class="cartManipBtns borders" id="cartAdd">
+          Add to Cart
+        </button>
+      </div>
+      <br />
+      <div class="purchase">
+          <button type="button" class="purchaseBtn borders">Purchase</button>
+      </div>
     </div>
-</body>
+  </body>
+  <script src="./shoe-catalogue.js"></script>
 </html>

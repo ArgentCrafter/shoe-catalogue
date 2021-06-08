@@ -1,0 +1,101 @@
+.containerAll {
+  background-color: silver;
+  border: black solid 4px;
+  border-radius: 14px;
+  width: 80%;
+  margin: auto;
+  overflow: auto;
+}
+
+.borders {
+    border: black solid 2px;
+    border-radius: 14px;
+}
+
+.cartBtn {
+  float: right;
+  width: 70px;
+  height: 40px;
+  margin: 3px;
+}
+
+.cartBtnInput {
+  padding-left: 13px;
+  padding-right: 13px;
+}
+
+.cartBtnInput:hover {
+  background-color: coral;
+}
+
+.header {
+  text-align: center;
+  font-size: 10mm;
+  font-style: oblique;
+  font-weight: bold;
+}
+
+.shoe {
+  text-align: center;
+}
+
+.shoeImage {
+    height: 96px;
+    width: 172px;
+}
+
+.userInputs {
+  text-align: center;
+  margin: 10px;
+}
+
+.shoesInput {
+  border: solid black 2px;
+  border-radius: 4px;
+  margin: 5px;
+}
+
+.content {
+  display: flex;
+  justify-content: space-around;
+}
+
+.search {
+  text-align: center;
+}
+
+.cartManip {
+  display: flex;
+  justify-content: center;
+}
+
+.cartManipBtns {
+    margin: 10px;
+    background-color: silver;
+}
+
+.cartManipBtns:hover {
+    background-color: coral;
+}
+
+.searchBtn {
+  width: 100px;
+  height: 30px;
+  background-color: silver;
+}
+
+.searchBtn:hover {
+  background-color: coral;
+}
+
+.purchaseBtn {
+    float: right;
+    margin: 4px;
+    width: 40mm;
+    height: 12mm;
+    background-color: silver;
+}
+
+.purchaseBtn:hover {
+    background-color: coral;
+}
