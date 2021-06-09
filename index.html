@@ -3,14 +3,18 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=, initial-scale=1.0" />
+    <meta name="viewport" content="initial-scale=1.0" />
     <link rel="stylesheet" href="./shoe-catalogue.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
+    <script type="text/x-template" class="template">
+        <p>We have found {{shoesNum}} {{color}} shoes, <br>size {{size}} and {{brand}} brand. Would you <br> like to add them to your cart?</p>
+    </script>
     <title>Shoe Catalogue</title>
   </head>
   <body>
     <div class="containerAll">
       <div class="cartBtn">
-        <input type="image" class="cartBtnInput borders" src="./cart.png" />
+        <input type="image" id="cartBtn" class="cartBtnInput borders" src="./cart.png" />
       </div>
       <br />
       <div class="header">
@@ -50,11 +54,7 @@
           ><br />
         </div>
         <div class="searchResult">
-          <p>
-            Please select a size, colour and <br />brand for your desired shoe
-            and <br />
-            press search to see if we have stock
-          </p>
+            <p>Please select color, size and brand <br> and then press search to see if we <br> have any shoes for you!</p>
         </div>
       </div>
       <div class="search">
@@ -69,10 +69,52 @@
         </button>
       </div>
       <br />
+      <div class="addStock">
+          <button type="button" class="addStockBtn borders">Add to Stock</button>
+      </div>
+      <div class="popup" style="display: none;">
+          <form action="/action_page.php" class="form-container">
+        <div class="addStockInputs">
+            <label for="color">Shoe Color:</label>
+            <select class="shoesInput" name="color" id="color">
+              <option value="black">Black</option>
+              <option value="white">White</option>
+              <option value="red">Red</option>
+              <option value="orange">Orange</option>
+              <option value="blue">Blue</option></select
+            ><br />
+            <label for="size">Shoe Size:</label>
+            <select class="shoesInput" name="size" id="size">
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+              <option value="12">12</option></select
+            ><br />
+            <label for="brand">Shoe Brand:</label>
+            <select class="shoesInput" name="brand" id="brand">
+              <option value="mike">Mike</option>
+              <option value="hadidas">Hadidas</option>
+              <option value="jacksons">Jacksons</option>
+              <option value="oldbalance">Old Balance</option>
+              <option value="yeeboks">Yeeboks</option></select
+            ><br />
+            <label for="stock">New stock:</label>
+            <input type="number" class="shoesInput" name="stock" id="stock">
+          </div>
+          <div class="addStockConfirm">
+          <button type="button" class="borders" id="cancelAddStock">Cancel</button>
+          <button type="button" class="borders" id="confirmAddStock">Confirm</button>
+        </div>
+        </div>
+    </form>
       <div class="purchase">
           <button type="button" class="purchaseBtn borders">Purchase</button>
       </div>
     </div>
   </body>
+  <script src="./functions.js"></script>
   <script src="./shoe-catalogue.js"></script>
 </html>
