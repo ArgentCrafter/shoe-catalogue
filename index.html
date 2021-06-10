@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="./shoe-catalogue.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
     <script type="text/x-template" class="template">
-        <p>We have found {{shoesNum}} shoes that <br>match your specifications. Would you <br> like to add them to your cart?</p>
+        <p>We have found {{shoesNum}} shoes that <br>match your specifications.<br> It will cost {{price}} per shoe. Would you <br> like to add one to your cart?</p>
     </script>
     <title>Shoe Catalogue</title>
   </head>
@@ -101,8 +101,11 @@
               <option value="oldbalance">Old Balance</option>
               <option value="yeeboks">Yeeboks</option></select
             ><br />
-            <label for="stock">New stock:</label>
-            <input type="number" class="shoesInput" name="stock" id="stock">
+            <label for="stock">Stock:</label>
+            <input type="number" class="shoesInput" name="stock" id="stock" value="0">
+            <br>
+            <label for="price">Price:</label>
+            <input type="number" class="shoesInput" name="price" id="price" value="0">
           </div>
           <div class="addStockConfirm">
           <button type="button" class="borders" id="cancelAddStock">Cancel</button>

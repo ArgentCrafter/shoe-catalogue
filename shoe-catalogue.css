@@ -55,6 +55,10 @@
   margin: 5px;
 }
 
+#price {
+  margin-left: 8px;
+}
+
 .content {
   display: flex;
   justify-content: space-around;
