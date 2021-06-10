@@ -20,13 +20,17 @@ var templateSource = document.querySelector(".template").innerHTML;
 var compTemplate = Handlebars.compile(templateSource);
 var displayElem = document.querySelector(".searchResult");
 
-var shoeList;
+var shoeList = [];
+var cartList = [];
 
 let shoe = shoeFunctions();
 
 document.body.onload = () => {
-    if (localStorage){
-    shoeList = JSON.parse(localStorage.getItem("shoes"));
+    if (localStorage["shoes"]) {
+        shoeList = JSON.parse(localStorage.getItem("shoes"));
+    }
+    if (localStorage["cart"]) {
+        cartList = JSON.parse(localStorage.getItem("cart"));
     }
 };
 
@@ -38,7 +42,7 @@ searchBtn.addEventListener("click", () => {
         var currShoe = shoeList[i];
         if ((currShoe.brand === shoeBrand.value) && (currShoe.size === shoeSize.value) && (currShoe.color === shoeColor.value) && currShoe.stock > 0) {
             stockFlag = true;
-            var displayHTML = compTemplate({shoesNum: currShoe.stock, price: currShoe.price});
+            var displayHTML = compTemplate({ shoesNum: currShoe.stock, price: currShoe.price });
             displayElem.innerHTML = displayHTML;
         }
     }
@@ -46,6 +50,30 @@ searchBtn.addEventListener("click", () => {
     if (stockFlag == false) {
         displayElem.innerHTML = "<p>No stock matching your conditions <br>were found. Please try different <br>conditions or look again at a later date.</p>";
     }
+})
+
+cartAdd.addEventListener("click", () => {
+    var flagCart = false;
+
+    if (cartList.length) {
+        for (var i = 0; i < cartList.length; i++) {
+            var currCart = cartList[i];
+            if ((currCart.brand === shoeBrand.value) && (currCart.size === shoeSize.value) && (currCart.color === shoeColor.value)) {
+                currCart.quantity++;
+                flagCart = true;
+            }
+        }
+    }
+    if (!flagCart) {
+        for (var i = 0; i < shoeList.length; i++) {
+            var currShoe = shoeList[i];
+            if ((currShoe.brand === shoeBrand.value) && (currShoe.size === shoeSize.value) && (currShoe.color === shoeColor.value) && (currShoe.stock > 0)) {
+                cartList.push({ brand: shoeBrand.value, color: shoeColor.value, size: shoeSize.value, stock: currShoe.stock, price: currShoe.price, quantity: 1 });
+            }
+        }
+    }
+    localStorage.setItem("cart", JSON.stringify(cartList));
+    console.log(cartList);
 })
 
 addStockBtn.addEventListener("click", () => {
