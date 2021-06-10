@@ -69,12 +69,17 @@ cartAdd.addEventListener("click", () => {
             var currShoe = shoeList[i];
             if ((currShoe.brand === shoeBrand.value) && (currShoe.size === shoeSize.value) && (currShoe.color === shoeColor.value) && (currShoe.stock > 0)) {
                 cartList.push({ brand: shoeBrand.value, color: shoeColor.value, size: shoeSize.value, stock: currShoe.stock, price: currShoe.price, quantity: 1 });
+                shoeList[i].quantity--;
             }
         }
     }
     localStorage.setItem("cart", JSON.stringify(cartList));
-    console.log(cartList);
-})
+    localStorage.setItem("shoes", JSON.stringify(shoeList));
+});
+
+cancelCartBtn.addEventListener("click", () => {
+
+});
 
 addStockBtn.addEventListener("click", () => {
     if (popupStock.style.display === "none") {
