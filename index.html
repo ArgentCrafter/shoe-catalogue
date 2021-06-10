@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="./shoe-catalogue.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
     <script type="text/x-template" class="template">
-        <p>We have found {{shoesNum}} {{color}} shoes, <br>size {{size}} and {{brand}} brand. Would you <br> like to add them to your cart?</p>
+        <p>We have found {{shoesNum}} shoes that <br>match your specifications. Would you <br> like to add them to your cart?</p>
     </script>
     <title>Shoe Catalogue</title>
   </head>
@@ -76,7 +76,7 @@
           <form action="/action_page.php" class="form-container">
         <div class="addStockInputs">
             <label for="color">Shoe Color:</label>
-            <select class="shoesInput" name="color" id="color">
+            <select class="shoesInput" name="addColor" id="addColor">
               <option value="black">Black</option>
               <option value="white">White</option>
               <option value="red">Red</option>
@@ -84,7 +84,7 @@
               <option value="blue">Blue</option></select
             ><br />
             <label for="size">Shoe Size:</label>
-            <select class="shoesInput" name="size" id="size">
+            <select class="shoesInput" name="addSize" id="addSize">
               <option value="6">6</option>
               <option value="7">7</option>
               <option value="8">8</option>
@@ -94,7 +94,7 @@
               <option value="12">12</option></select
             ><br />
             <label for="brand">Shoe Brand:</label>
-            <select class="shoesInput" name="brand" id="brand">
+            <select class="shoesInput" name="addBrand" id="addBrand">
               <option value="mike">Mike</option>
               <option value="hadidas">Hadidas</option>
               <option value="jacksons">Jacksons</option>
