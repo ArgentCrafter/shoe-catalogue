@@ -59,7 +59,17 @@ cartAdd.addEventListener("click", () => {
         for (var i = 0; i < cartList.length; i++) {
             var currCart = cartList[i];
             if ((currCart.brand === shoeBrand.value) && (currCart.size === shoeSize.value) && (currCart.color === shoeColor.value)) {
-                currCart.quantity++;
+                for (var i = 0; i < shoeList.length; i++) {
+                    var currShoe = shoeList[i];
+                    if ((currShoe.brand === shoeBrand.value) && (currShoe.size === shoeSize.value) && (currShoe.color === shoeColor.value) && (currShoe.stock > 0)) {
+                        if (currShoe.stock > 0) {
+                            shoeList[i].stock--;
+                            currCart.quantity++;
+                        } else {
+                            displayElem.innerHTML = "There is not enough stock for you to add that shoe to your cart";
+                        }
+                    }
+                }
                 flagCart = true;
             }
         }
@@ -68,13 +78,18 @@ cartAdd.addEventListener("click", () => {
         for (var i = 0; i < shoeList.length; i++) {
             var currShoe = shoeList[i];
             if ((currShoe.brand === shoeBrand.value) && (currShoe.size === shoeSize.value) && (currShoe.color === shoeColor.value) && (currShoe.stock > 0)) {
-                cartList.push({ brand: shoeBrand.value, color: shoeColor.value, size: shoeSize.value, stock: currShoe.stock, price: currShoe.price, quantity: 1 });
-                shoeList[i].quantity--;
+                if (currShoe.stock > 0) {
+                    cartList.push({ brand: shoeBrand.value, color: shoeColor.value, size: shoeSize.value, price: currShoe.price, quantity: 1 });
+                    shoeList[i].stock--;
+                } else {
+                    displayElem.innerHTML = "There is not enough stock for you to add that shoe to your cart";
+                }
             }
         }
     }
     localStorage.setItem("cart", JSON.stringify(cartList));
     localStorage.setItem("shoes", JSON.stringify(shoeList));
+    cartList = [];
 });
 
 cancelCartBtn.addEventListener("click", () => {
@@ -107,16 +122,21 @@ confirmAddStock.addEventListener("click", () => {
     shoeList = JSON.parse(localStorage.getItem("shoes"));
     var stockFlag = false;
 
-    for (var i = 0; i < shoeList.length; i++) {
-        var currShoe = shoeList[i];
-        if ((currShoe.brand === addBrand.value) && (currShoe.size === addSize.value) && (currShoe.color === addColor.value)) {
-            stockFlag = true;
-            if ((addStock.value != "") && (addStock.value >= 0)) {
-                currShoe.stock = addStock.value;
-                currShoe.price = addPrice.value;
-                localStorage.setItem("shoes", JSON.stringify(shoeList));
+    if (localStorage["shoes"]) {
+        for (var i = 0; i < shoeList.length; i++) {
+            var currShoe = shoeList[i];
+            if ((currShoe.brand === addBrand.value) && (currShoe.size === addSize.value) && (currShoe.color === addColor.value)) {
+                stockFlag = true;
+                if ((addStock.value != "") && (addStock.value >= 0)) {
+                    currShoe.stock = addStock.value;
+                    currShoe.price = addPrice.value;
+                    localStorage.setItem("shoes", JSON.stringify(shoeList));
+                }
             }
         }
+    } else {
+        localStorage.setItem("shoes", JSON.stringify({brand: addBrand.value, size: addSize.value, color: addColor.value, stock: addStock.value, price: addPrice.value}));
+        shoeList = JSON.parse(localStorage.getItem("shoes"));
     }
 
     if (stockFlag == false) {
