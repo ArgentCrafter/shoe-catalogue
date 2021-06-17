@@ -39,6 +39,8 @@ document.body.onload = () => {
         cartList = JSON.parse(localStorage.getItem("cart"));
     }
 
+    var totalPrice = 0;
+
     if (cartList.length) {
         cartTableElem.innerHTML = "<tr><th>Brand:</th><th>Size:</th><th>Color:</th><th>Quantity:</th>";
 
@@ -47,7 +49,9 @@ document.body.onload = () => {
             var displayHTML = '';
             displayHTML = compCartTemplate({ shoeBrand: currItem.brand, shoeSize: currItem.size, shoeColor: currItem.color, shoeQuantity: currItem.quantity });
             cartTableElem.innerHTML += displayHTML;
+            totalPrice += parseInt(currItem.price) * parseInt(currItem.quantity);
         }
+        cartTableElem.innerHTML += "<tr><td></td><td></td><th>Total Price: </th> <td>R " + totalPrice + "</td></tr>";
     }
 };
 
@@ -78,6 +82,7 @@ cartAdd.addEventListener("click", () => {
         shoeList = JSON.parse(localStorage.getItem("shoes"));
     }
 
+    var totalPrice = 0;
     var flagCart = false;
 
     if (cartList.length) {
@@ -125,7 +130,9 @@ cartAdd.addEventListener("click", () => {
             var displayHTML = '';
             displayHTML = compCartTemplate({ shoeBrand: currItem.brand, shoeSize: currItem.size, shoeColor: currItem.color, shoeQuantity: currItem.quantity });
             cartTableElem.innerHTML += displayHTML;
+            totalPrice += parseInt(currItem.price) * parseInt(currItem.quantity);
         }
+        cartTableElem.innerHTML += "<tr><td></td><td></td><th>Total Price: </th> <td>R " + totalPrice + "</td></tr>";
     }
 });
 
@@ -173,6 +180,8 @@ removeCartBtn.addEventListener("click", () => {
         shoeList - JSON.parse(localStorage.getItem("shoes"));
     }
 
+    var totalPrice = 0;
+
     cartTableElem.innerHTML = "<tr><th>Brand:</th><th>Size:</th><th>Color:</th><th>Quantity:</th>";
 
     for (var k = 0; k < cartList.length; k++) {
@@ -198,9 +207,10 @@ removeCartBtn.addEventListener("click", () => {
             var displayHTML = '';
             displayHTML = compCartTemplate({ shoeBrand: currItem.brand, shoeSize: currItem.size, shoeColor: currItem.color, shoeQuantity: currItem.quantity });
             cartTableElem.innerHTML += displayHTML;
+            totalPrice += parseInt(currItem.price) * parseInt(currItem.quantity);
         }
+        cartTableElem.innerHTML += "<tr><td></td><td></td><th>Total Price: </th> <td>R " + totalPrice + "</td></tr>";
     }
-    console.log(cartList);
     localStorage.setItem("cart", JSON.stringify(cartList));
     localStorage.setItem("shoes", JSON.stringify(shoeList));
 })
