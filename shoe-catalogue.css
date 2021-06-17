@@ -95,7 +95,7 @@
 .addStockBtn {
   float: left;
   margin: 4px;
-  width: 40mm;
+  width: 35mm;
   height: 12mm;
   background-color: silver;
 }
@@ -147,11 +147,21 @@ table, th, td {
 .purchaseBtn {
     float: right;
     margin: 4px;
-    width: 40mm;
+    width: 35mm;
     height: 12mm;
     background-color: silver;
 }
 
 .purchaseBtn:hover {
     background-color: coral;
+}
+
+@media(max-width: 370px) {
+  .purchaseBtn {
+    width: 30mm;
+  }
+
+  .addStockBtn {
+    width: 30mm;
+  }
 }

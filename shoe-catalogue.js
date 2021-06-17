@@ -173,6 +173,8 @@ removeCartBtn.addEventListener("click", () => {
         shoeList - JSON.parse(localStorage.getItem("shoes"));
     }
 
+    cartTableElem.innerHTML = "<tr><th>Brand:</th><th>Size:</th><th>Color:</th><th>Quantity:</th>";
+
     for (var k = 0; k < cartList.length; k++) {
         var currItem = cartList[k];
         if ((currItem.brand === shoeBrand.value) && (currItem.size === shoeSize.value) && (currItem.color === shoeColor.value)) {
