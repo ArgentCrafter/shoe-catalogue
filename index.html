@@ -7,14 +7,27 @@
     <link rel="stylesheet" href="./shoe-catalogue.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
     <script type="text/x-template" class="template">
-        <p>We have found {{shoesNum}} shoes that <br>match your specifications.<br> It will cost {{price}} per shoe. Would you <br> like to add one to your cart?</p>
+      <p>We have found {{shoesNum}} shoes that <br>match your specifications.<br> It will cost {{price}} per shoe. Would you <br> like to add one to your cart?</p>
+    </script>
+    <script type="text/x-template" class="cartTemplate">
+      <tr>
+        <td>{{shoeBrand}}</td>
+        <td>{{shoeSize}}</td>
+        <td>{{shoeColor}}</td>
+        <td>{{shoeQuantity}}</td>
+      </tr>
     </script>
     <title>Shoe Catalogue</title>
   </head>
   <body>
     <div class="containerAll">
       <div class="cartBtn">
-        <input type="image" id="cartBtn" class="cartBtnInput borders" src="./cart.png" />
+        <input
+          type="image"
+          id="cartBtn"
+          class="cartBtnInput borders"
+          src="./cart.png"
+        />
       </div>
       <br />
       <div class="header">
@@ -54,15 +67,24 @@
           ><br />
         </div>
         <div class="searchResult">
-            <p>Please select color, size and brand <br> and then press search to see if we <br> have any shoes for you!</p>
+          <p>
+            Please select color, size and brand <br />
+            and then press search to see if we <br />
+            have any shoes for you!
+          </p>
         </div>
       </div>
       <div class="search">
-        <button type="button" class="searchBtn borders" id="searchBtn">Search</button>
+        <button type="button" class="searchBtn borders" id="searchBtn">
+          Search
+        </button>
       </div>
       <div class="cartManip">
         <button type="button" class="cartManipBtns borders" id="cartCancel">
           Cancel Cart
+        </button>
+        <button type="button" class="cartManipBtns borders" id="cartRemove">
+          Remove from Cart
         </button>
         <button type="button" class="cartManipBtns borders" id="cartAdd">
           Add to Cart
@@ -70,11 +92,11 @@
       </div>
       <br />
       <div class="addStock">
-          <button type="button" class="addStockBtn borders">Add to Stock</button>
+        <button type="button" class="addStockBtn borders">Add to Stock</button>
       </div>
-      <div class="popup" style="display: none;">
-          <form action="/action_page.php" class="form-container">
-        <div class="addStockInputs">
+      <div class="popup" style="display: none">
+        <form action="/action_page.php" class="form-container">
+          <div class="addStockInputs">
             <label for="color">Shoe Color:</label>
             <select class="shoesInput" name="addColor" id="addColor">
               <option value="black">Black</option>
@@ -102,19 +124,47 @@
               <option value="yeeboks">Yeeboks</option></select
             ><br />
             <label for="stock">Stock:</label>
-            <input type="number" class="shoesInput" name="stock" id="stock" value="0">
-            <br>
+            <input
+              type="number"
+              class="shoesInput"
+              name="stock"
+              id="stock"
+              value="0"
+            />
+            <br />
             <label for="price">Price:</label>
-            <input type="number" class="shoesInput" name="price" id="price" value="0">
+            <input
+              type="number"
+              class="shoesInput"
+              name="price"
+              id="price"
+              value="0"
+            />
           </div>
           <div class="addStockConfirm">
-          <button type="button" class="borders" id="cancelAddStock">Cancel</button>
-          <button type="button" class="borders" id="confirmAddStock">Confirm</button>
-        </div>
-        </div>
-    </form>
+            <button type="button" class="borders" id="cancelAddStock">
+              Cancel
+            </button>
+            <button type="button" class="borders" id="confirmAddStock">
+              Confirm
+            </button>
+          </div>
+        </form>
+      </div>
+      <div class="cart" style="display: none">
+        <form action="/action_page.php" class="form-container">
+          <table id="cartTable">
+            <tr>
+              <th>Brand:</th>
+              <th>Size:</th>
+              <th>Color:</th>
+              <th>Quantity:</th>
+            </tr>
+          </table>
+        </form>
+      </div>
       <div class="purchase">
-          <button type="button" class="purchaseBtn borders">Purchase</button>
+        <button type="button" class="purchaseBtn borders">Purchase</button>
       </div>
     </div>
   </body>

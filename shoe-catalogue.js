@@ -8,6 +8,7 @@ const addStock = document.getElementById("stock");
 const addPrice = document.getElementById("price");
 const searchBtn = document.getElementById("searchBtn");
 const cancelCartBtn = document.getElementById("cartCancel");
+const removeCartBtn = document.getElementById("cartCancel");
 const addToCartBtn = document.getElementById("cartAdd");
 const purchaseBtn = document.getElementById("purchaseBtn");
 const cartBtn = document.getElementById("cartBtn");
@@ -15,10 +16,15 @@ const addStockBtn = document.querySelector(".addStockBtn");
 const popupStock = document.querySelector(".popup");
 const confirmAddStock = document.getElementById("confirmAddStock");
 const cancelAddStock = document.getElementById("cancelAddStock");
+const cartForm = document.querySelector(".cart");
 
 var templateSource = document.querySelector(".template").innerHTML;
 var compTemplate = Handlebars.compile(templateSource);
 var displayElem = document.querySelector(".searchResult");
+
+var cartTemplateSource = document.querySelector(".cartTemplate").innerHTML;
+var compCartTemplate = Handlebars.compile(cartTemplateSource);
+var cartTableElem = document.getElementById("cartTable");
 
 var shoeList = [];
 var cartList = [];
@@ -31,6 +37,17 @@ document.body.onload = () => {
     }
     if (localStorage["cart"]) {
         cartList = JSON.parse(localStorage.getItem("cart"));
+    }
+
+    if (cartList.length) {
+        cartTableElem.innerHTML = "<tr><th>Brand:</th><th>Size:</th><th>Color:</th><th>Quantity:</th>";
+
+        for (var i = 0; i < cartList.length; i++) {
+            currItem = cartList[i];
+            var displayHTML = '';
+            displayHTML = compCartTemplate({ shoeBrand: currItem.brand, shoeSize: currItem.size, shoeColor: currItem.color, shoeQuantity: currItem.quantity });
+            cartTableElem.innerHTML += displayHTML;
+        }
     }
 };
 
@@ -53,6 +70,10 @@ searchBtn.addEventListener("click", () => {
 })
 
 cartAdd.addEventListener("click", () => {
+    if (localStorage["cart"]) {
+        cartList = JSON.parse(localStorage.getItem("cart"));
+    }
+
     var flagCart = false;
 
     if (cartList.length) {
@@ -89,14 +110,42 @@ cartAdd.addEventListener("click", () => {
     }
     localStorage.setItem("cart", JSON.stringify(cartList));
     localStorage.setItem("shoes", JSON.stringify(shoeList));
-    cartList = [];
+
+    cartList = JSON.parse(localStorage.getItem("cart"));
+
+    if (cartList.length) {
+        cartTableElem.innerHTML = "<tr><th>Brand:</th><th>Size:</th><th>Color:</th><th>Quantity:</th>";
+
+        for (var i = 0; i < cartList.length; i++) {
+            currItem = cartList[i];
+            var displayHTML = '';
+            displayHTML = compCartTemplate({ shoeBrand: currItem.brand, shoeSize: currItem.size, shoeColor: currItem.color, shoeQuantity: currItem.quantity });
+            cartTableElem.innerHTML += displayHTML;
+        }
+    }
 });
+
+cartBtn.addEventListener("click", () => {
+    if (popupStock.style.display === "block") {
+        popupStock.style.display = "none";
+    }
+
+    if (cartForm.style.display === "none") {
+        cartForm.style.display = "block"
+    } else {
+        cartForm.style.display = "none";
+    }
+})
 
 addStockBtn.addEventListener("click", () => {
     if (popupStock.style.display === "none") {
         popupStock.style.display = "block";
     } else {
         popupStock.style.display = "none";
+    }
+
+    if (cartForm.style.display === "block") {
+        cartForm.style.display = "none";
     }
 });
 
