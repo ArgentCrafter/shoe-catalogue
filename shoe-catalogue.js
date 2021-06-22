@@ -240,8 +240,8 @@ cancelAddStock.addEventListener("click", () => {
         popupStock.style.display = "none";
     }
 
-    addStock.value = "";
-    addPrice.value = "";
+    addStock.value = 0;
+    addPrice.value = 0;
     addBrand.value = "mike";
     addSize.value = "6";
     addColor.value = "black";
